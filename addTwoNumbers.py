@@ -4,32 +4,27 @@
 #         self.val = val
 #         self.next = next
 class Solution(object):
+    def linklist_to_str(self,linklst):
+        str = ""
+        while linklst:
+            if str == "":
+                str = linklst.val
+                linklst = linklst.next
+            else:
+                str = "{}{}".format(linklst.val, str)
+                linklst = linklst.next
+        return str
     def addTwoNumbers(self, l1, l2):
         """
-        :type l1: ListNode
-        :type l2: ListNode
+        :type l1: ListNode = [2,4,3]
+        :type l2: ListNode = [5,6,4]
         :rtype: ListNode
         """
-        a = "" #reverse l1=[2,4,3] to a=342
-        while l1:
-            if a == "":
-                a = l1.val
-                l1 = l1.next
-            else:
-                a = "{}{}".format(l1.val, a)
-                l1 = l1.next
-        b = "" #reverse l2=[5,6,4] to b=465
-        while l2:
-            if b == "":
-                b = l2.val
-                l2 = l2.next
-            else:
-                b = "{}{}".format(l2.val, b)
-                l2 = l2.next
+        a = self.linklist_to_str(l1) #a=342
+        b = self.linklist_to_str(l2) #b=465
         c = str(int(a)+int(b)) #c=807
         d = c[::-1] #d=708
         
-		#trasfer d to ListNode
         self.head = ListNode(d[0])
         r = self.head
         p = self.head
